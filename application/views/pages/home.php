@@ -21,11 +21,12 @@ class ListItem {
     }
 }
 
+
 foreach ($lists as $list):
     array_push($Alltasks, new Task($list['listId'], $list['Description']));
     if($currentList != $list['listId']){
-        array_push($AllLists, new ListItem($list['listId'], $list['Title']));
-        $currentList = $list['listId'];
+        array_push($AllLists, new ListItem($list['Id'], $list['Title']));
+        $currentList = $list['Id'];
     }
 endforeach;
 
@@ -35,7 +36,9 @@ foreach($AllLists as $list):
             array_push($list->tasks, $task->description);
         }
     endforeach;
-endforeach;
+endforeach; 
+
+
 
 foreach ($AllLists as $items): ?>
 
@@ -43,9 +46,10 @@ foreach ($AllLists as $items): ?>
   <a href="<?= base_url(); ?>" class="list-group-item active">
     <?= $items->title ?>
   </a>
-    <?php foreach ($items->tasks as $tasks): ?>
+
+    <?php if($items->tasks){ foreach ($items->tasks as $tasks): ?>
         <a href="#" class="list-group-item"><?= $tasks ?></a>
-    <?php endforeach; ?>
+    <?php endforeach; } ?>
 </div>
 <br>
 

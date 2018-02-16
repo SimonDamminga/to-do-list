@@ -11,14 +11,13 @@
 <body>
 <div class="navbar navbar-expand-lg navbar-light bg-light bg-primary">
     <div class="container">
-        <a href="../" class="navbar-brand">To Do List</a>
+        <a href="<?php echo base_url(); ?>" class="navbar-brand">To Do List</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav">
-            <a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
-            <a class="nav-link" href="<?php echo base_url(); ?>about">About</a>
+            <a class="nav-link" href="<?php echo base_url(); ?>">Alle lijsten</a>
             <a class="nav-link" href="<?php echo base_url(); ?>create">Toevoegen</a>
           </ul>
         </div>

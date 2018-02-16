@@ -6,10 +6,10 @@
       <label for="title">Lijst titel</label>
       <input type="text" class="form-control" name="title" placeholder="titel">
     </div>
-    <!-- <div class="form-group">
-      <label for="task">Een taak toevoegen</label>
-      <input type="password" class="form-control" placeholder="Taak">
-    </div> -->
-  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-  <input class="btn btn-primary" type="submit" name="submit" value="Create news item" />
+
+  <input class="btn btn-primary" type="submit" name="submit" value="Lijst aanmaken" />
 </form>
+
+<br><hr><br>
+
+<a class="btn btn-primary" href="<?= base_url(); ?>create-tasks">Taken toevoegen</a>
