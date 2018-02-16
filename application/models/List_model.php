@@ -11,7 +11,16 @@
             
 
             $query = $this->db->get();
-            print_r($query->result_array());
             return $query->result_array();
         }
-    }
+
+        public function set_item(){
+            $this->load->helper('url');
+
+            $data = array(
+                'Title' => $this->input->post('title')
+            );
+
+            return $this->db->insert('lists', $data);
+        }
+    } 

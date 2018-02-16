@@ -21,4 +21,23 @@
             $this->load->view('pages/'.$page, $data);
             $this->load->view('templates/footer');      
         }
+
+        public function create(){
+            $this->load->helper(array('form', 'url'));
+            $this->load->library('form_validation');
+
+
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            
+            if ($this->form_validation->run() === FALSE){
+                
+                $this->load->view('templates/header');
+                $this->load->view('pages/create');
+                $this->load->view('templates/footer');
+        
+            }else{
+                $this->list_model->set_item();
+                redirect(base_url());
+            }
+        }
     }

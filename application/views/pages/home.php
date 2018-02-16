@@ -1,61 +1,54 @@
-
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/index.css">
 
 <?php 
 
-$currList = null;
 $currentList = null;
-$myList = array();
-$tasks = array();
+$AllLists = array();
+$Alltasks = array();
 
-class ListItem {
-    function ListItem($title, $taken){
-        $this->title = $title;
-        $this->taken = $taken;
+class Task {
+    function Task($id, $description){
+        $this->id = $id;
+        $this->description = $description;
     }
 }
 
-
-
-?>
-
-<?php 
+class ListItem {
+    function ListItem($id, $title){
+        $this->id = $id;
+        $this->title = $title;
+        $this->tasks = array();
+    }
+}
 
 foreach ($lists as $list):
+    array_push($Alltasks, new Task($list['listId'], $list['Description']));
     if($currentList != $list['listId']){
-
-        foreach($lists as $listAsTask):
-            if($currentList != $listAsTask['listId']){
-                if($listAsTask['Description'] != ''){
-                    array_push($tasks, $listAsTask['Description']);
-                }else{
-                    $tasks = 'Geen taken';
-                }
-            }
-        endforeach;
-
-        $listItem = new ListItem($list['Title'], $tasks);
-
-        array_push($myList, $listItem);
+        array_push($AllLists, new ListItem($list['listId'], $list['Title']));
         $currentList = $list['listId'];
-        $tasks = array();
     }
+endforeach;
 
-endforeach; 
+foreach($AllLists as $list):
+    foreach($Alltasks as $task):
+        if($list->id == $task->id){
+            array_push($list->tasks, $task->description);
+        }
+    endforeach;
+endforeach;
 
-var_dump($myList);
+foreach ($AllLists as $items): ?>
 
-?>
-
-    
-<?php foreach ($lists as $list): ?>
-
-    <?php if($currList != $list['listId']){ ?>
-        <h3><?= $list['Title']; ?></h3>
-    <?php $currList = $list['listId']; } ?>
-
-    <?php if($list['Description'] != ''){ ?>
-        <li><?= $list['Description'] ?></li>
-    <?php } ?>   
+<div class="list-group custom-list">
+  <a href="<?= base_url(); ?>" class="list-group-item active">
+    <?= $items->title ?>
+  </a>
+    <?php foreach ($items->tasks as $tasks): ?>
+        <a href="#" class="list-group-item"><?= $tasks ?></a>
+    <?php endforeach; ?>
+</div>
+<br>
 
 <?php endforeach; ?>
+
 

@@ -6,6 +6,7 @@
     <title>To Do List</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/index.css">
 </head>
 <body>
 <div class="navbar navbar-expand-lg navbar-light bg-light bg-primary">
@@ -16,8 +17,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav">
-          <a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
+            <a class="nav-link" href="<?php echo base_url(); ?>">Home</a>
             <a class="nav-link" href="<?php echo base_url(); ?>about">About</a>
+            <a class="nav-link" href="<?php echo base_url(); ?>create">Toevoegen</a>
           </ul>
         </div>
     </div>
