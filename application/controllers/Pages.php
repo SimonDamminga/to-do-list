@@ -16,11 +16,36 @@
             $data['title'] = ucfirst($page);
             $data['lists'] = $this->list_model->get_lists();
 
+            if(empty($data['lists'])){
+                $data['noResult'] = 'Geen taken...';
+            }
+
             $this->load->helper('url');
 
             $this->load->view('templates/header');
             $this->load->view('pages/'.$page, $data);
             $this->load->view('templates/footer');      
+        }
+
+        public function edit($id = NULL){
+            $data['list'] = $this->list_model->get_list($id);
+
+            if(empty($data['list'])){
+                show_404();
+            }
+
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/edit', $data);
+            $this->load->view('templates/footer'); 
+
+        }
+
+        public function delete($id = NULL){
+            $this->list_model->delete_item($id);
+            $this->task_model->delete_task($id);
+
+            redirect(base_url());
         }
 
         public function create(){
@@ -60,7 +85,6 @@
 
             }else{
                 $this->task_model->set_task();
-                redirect(base_url());
             }
         }
     }

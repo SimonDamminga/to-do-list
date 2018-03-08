@@ -14,7 +14,7 @@ class ListItem {
 }
 
 foreach ($lists as $list):
-    if($currentList != $list['listId']){
+    if($currentList != $list['Id']){
         array_push($AllLists, new ListItem($list['Id'], $list['Title']));
         $currentList = $list['Id'];
     }
@@ -25,9 +25,9 @@ endforeach;
 
 <div class="form-group">
     <label for="exampleSelect1">Kies een lijst</label>
-      <select class="form-control">
+      <select class="form-control" name="list">
         <?php foreach ($AllLists as $list): ?>
-            <option><?= $list->title ?></option>
+            <option value="<?= $list->id ?>" <?php set_select('list', $list->id, False) ?> ><?= $list->title ?></option>
         <?php endforeach; ?>
       </select>
 

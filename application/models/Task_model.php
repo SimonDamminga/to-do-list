@@ -8,7 +8,7 @@
             $this->load->helper('url');
 
             $data = array(
-                'listId' => 2,
+                'listId' => $this->input->post('list'),
                 'Name' => $this->input->post('name'),
                 'Description' => $this->input->post('description')
             );
@@ -16,4 +16,11 @@
             return $this->db->insert('tasks', $data);
 
         }
+
+        public function delete_task($id){
+            $this->db->from('tasks');
+            $this->db->where('listId', $id);
+            $this->db->delete();
+        }
+        
     }

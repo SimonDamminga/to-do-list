@@ -14,6 +14,15 @@
             return $query->result_array();
         }
 
+        public function get_list($id){
+            $this->db->from('lists');
+            $this->db->where("Id=".$id);
+            $this->db->join('tasks', 'lists.Id = tasks.listId', 'left outer');
+
+            $query = $this->db->get();
+            return $query->result_array();
+        }
+
         public function set_item(){
             $this->load->helper('url');
 
@@ -23,4 +32,11 @@
 
             return $this->db->insert('lists', $data);
         }
+
+        public function delete_item($id){
+            $this->db->from('lists');
+            $this->db->where('Id', $id);
+            $this->db->delete();
+        }
+
     } 

@@ -1,5 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/index.css">
-
+<?php echo validation_errors() ?>
 <?php 
 
 $currentList = null;
@@ -22,12 +21,13 @@ class ListItem {
 }
 
 
-foreach ($lists as $list):
+foreach ($list as $list):
     array_push($Alltasks, new Task($list['listId'], $list['Description']));
     if($currentList != $list['Id']){
         array_push($AllLists, new ListItem($list['Id'], $list['Title']));
         $currentList = $list['Id'];
     }
+    
 endforeach;
 
 foreach($AllLists as $list):
@@ -38,9 +38,6 @@ foreach($AllLists as $list):
     endforeach;
 endforeach; 
 
-if(empty($lists)){ ?>
-    <h3><?= $noResult ?></h3>
-<?php }
 
 foreach ($AllLists as $items): ?>
 
@@ -55,11 +52,11 @@ foreach ($AllLists as $items): ?>
     <?php endforeach; } ?>
 </div>
 <br>
-<a class="btn btn-primary" href="<?php echo site_url('edit/'.$items->id) ?>">Edit</a>
-<a class="btn btn-danger" href="<?php echo site_url('delete/'.$items->id) ?>">Delete</a>
+<a class="btn btn-primary" href="<?php echo site_url('edit/'.$items->id) ?>">Save</a>
 <br>
 <br>
 
 <?php endforeach; ?>
 
+<?php echo form_open('edit') ?>
 
