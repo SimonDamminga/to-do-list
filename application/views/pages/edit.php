@@ -41,22 +41,16 @@ endforeach;
 
 foreach ($AllLists as $items): ?>
 
+<?php echo form_open('edit'); ?>
 
-<div class="list-group custom-list">
-  <a href="<?= base_url(); ?>" class="list-group-item active">
-    <?= $items->title ?>
-  </a>
+<div class="form-group">
+      <label for="title">Lijst titel</label>
+      <input type="text" class="form-control" name="title" value="<?= $items->title ?>">
+    </div>
 
-    <?php if($items->tasks){ foreach ($items->tasks as $tasks): ?>
-        <a href="#" class="list-group-item"><?= $tasks ?></a>
-    <?php endforeach; } ?>
-</div>
-<br>
-<a class="btn btn-primary" href="<?php echo site_url('edit/'.$items->id) ?>">Save</a>
-<br>
-<br>
-
+  <input class="btn btn-primary" type="submit" name="submit" value="Lijst updaten" />
+</form>
 <?php endforeach; ?>
 
-<?php echo form_open('edit') ?>
+
 
