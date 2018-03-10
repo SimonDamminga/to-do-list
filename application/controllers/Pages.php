@@ -29,9 +29,6 @@
 
         public function edit($id = NULL){
             $this->load->helper(array('form', 'url'));
-            $this->load->library('form_validation');
-
-            $this->form_validation->set_rules('title', 'Title', 'required');
 
             $data['list'] = $this->list_model->get_list($id);
 
@@ -39,21 +36,16 @@
                 show_404();
             }
 
-            if ($this->form_validation->run() === FALSE){
-                
-                $this->load->view('templates/header');
-                $this->load->view('pages/edit', $data);
-                $this->load->view('templates/footer');
-        
-            }else{
-                $this->list_model->update_item($id);
-                redirect(base_url());
-            }
 
-            // $this->load->view('templates/header');
-            // $this->load->view('pages/edit', $data);
-            // $this->load->view('templates/footer'); 
+            $this->load->view('templates/header');
+            $this->load->view('pages/edit', $data);
+            $this->load->view('templates/footer'); 
 
+        }
+
+        public function update(){
+            $this->list_model->update_item();
+            redirect(base_url());
         }
 
         public function delete($id = NULL){

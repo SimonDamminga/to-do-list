@@ -1,4 +1,3 @@
-<?php echo validation_errors() ?>
 <?php 
 
 $currentList = null;
@@ -41,8 +40,9 @@ endforeach;
 
 foreach ($AllLists as $items): ?>
 
-<?php echo form_open('edit'); ?>
+<?php echo form_open('update'); ?>
 
+<input type="hidden" name="id" value="<?= $items->id ?>" >
 <div class="form-group">
       <label for="title">Lijst titel</label>
       <input type="text" class="form-control" name="title" value="<?= $items->title ?>">

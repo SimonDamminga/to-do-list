@@ -39,14 +39,14 @@
             $this->db->delete();
         }
 
-        public function update_items($id){
+        public function update_item(){
             $this->load->helper('url');
 
             $data = array(
                 'Title' => $this->input->post('title')
             );
 
-            $this->db->where('Id', $id);
+            $this->db->where('Id', $this->input->post('id'));
             $this->db->update('lists', $data);
         }
     } 
