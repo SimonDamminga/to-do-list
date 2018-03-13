@@ -7,9 +7,10 @@ $AllLists = array();
 $Alltasks = array();
 
 class Task {
-    function Task($id, $description){
+    function Task($id, $description, $duration){
         $this->id = $id;
         $this->description = $description;
+        $this->duration = $duration;
     }
 }
 
@@ -23,7 +24,7 @@ class ListItem {
 
 
 foreach ($lists as $list):
-    array_push($Alltasks, new Task($list['listId'], $list['Description']));
+    array_push($Alltasks, new Task($list['listId'], $list['Description'], $list['Duration']));
     if($currentList != $list['Id']){
         array_push($AllLists, new ListItem($list['Id'], $list['Title']));
         $currentList = $list['Id'];
@@ -33,7 +34,7 @@ endforeach;
 foreach($AllLists as $list):
     foreach($Alltasks as $task):
         if($list->id == $task->id){
-            array_push($list->tasks, $task->description);
+            array_push($list->tasks, $task->description . ' | Tijdsduur: ' . $task->duration . ' min');
         }
     endforeach;
 endforeach; 

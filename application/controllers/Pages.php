@@ -48,7 +48,7 @@
             redirect(base_url());
         }
 
-        public function delete($id = NULL){
+        public function delete($id){
             $this->list_model->delete_item($id);
             $this->task_model->delete_task($id);
 
@@ -70,7 +70,7 @@
         
             }else{
                 $this->list_model->set_item();
-                redirect(base_url());
+                redirect(base_url().'/create-tasks');
             }
         }
 
@@ -83,6 +83,7 @@
 
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('description', 'Description', 'required');
+            $this->form_validation->set_rules('duration', 'Duration', 'required');
             
             if ($this->form_validation->run() === FALSE){
 
@@ -92,6 +93,36 @@
 
             }else{
                 $this->task_model->set_task();
+                
+                $this->load->view('templates/header');
+                $this->load->view('pages/create-tasks', $data);
+                $this->load->view('templates/footer'); 
             }
+        }
+
+        public function deleteTask($id){
+            $this->task_model->delete_single_task($id);
+
+            redirect(base_url());
+        }
+
+        public function editTask($id){
+            $this->load->helper(array('form', 'url'));
+
+            $data['task'] = $this->task_model->get_task($id);
+
+            if(empty($data['task'])){
+                show_404();
+            }
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/edit-task', $data);
+            $this->load->view('templates/footer');          
+
+        }
+
+        public function updateTask(){
+            $this->task_model->edit_task();
+            redirect(base_url());
         }
     }

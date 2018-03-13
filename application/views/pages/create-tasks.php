@@ -23,6 +23,9 @@ endforeach;
 
 ?>
 
+<h3>Een taak toevoegen</h3>
+<br>
+
 <div class="form-group">
     <label for="exampleSelect1">Kies een lijst</label>
       <select class="form-control" name="list">
@@ -42,6 +45,11 @@ endforeach;
     <input type="text" class="form-control" name="description" placeholder="Omschrijving">
     <small class="form-text text-muted">Wat zijn de handelingen van de taak</small>
 
+    <br>
+
+    <label for="title">Hoe lang er aan werken</label>
+    <input type="number" class="form-control" name="duration" placeholder="Tijd in minuten">
+    <small class="form-text text-muted">Hoe lang duurt de taak</small>
 
 </div>
 
