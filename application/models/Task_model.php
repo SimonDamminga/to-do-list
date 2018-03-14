@@ -19,7 +19,8 @@
                 'listId' => $this->input->post('list'),
                 'Name' => $this->input->post('name'),
                 'Description' => $this->input->post('description'),
-                'Duration' => $this->input->post('duration')
+                'Duration' => $this->input->post('duration'),
+                'Status' => $this->input->post('status')
             );
 
             return $this->db->insert('tasks', $data);
@@ -46,7 +47,8 @@
             $data = array(
                 'Name' => $this->input->post('name'),
                 'Description' => $this->input->post('description'),
-                'Duration' => $this->input->post('duration')
+                'Duration' => $this->input->post('duration'),
+                'Status' => $this->input->post('status')
             );
 
             $this->db->update('tasks', $data);

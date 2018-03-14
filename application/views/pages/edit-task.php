@@ -27,5 +27,11 @@ class Task {
     <small class="form-text text-muted">Hoe lang duurt de taak</small>
     <br>
 
+    <br>
+
+    <label for="title">Status</label>
+    <input type="number" min="1" max="3" class="form-control" name="status" value="<?= $task[0]['Status'] ?>">
+    <small class="form-text text-muted">1, 2 of 3</small>
+
   <input class="btn btn-primary" type="submit" name="submit" value="Taak aanpassen" />
 </form>
