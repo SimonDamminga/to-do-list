@@ -9,6 +9,8 @@
         }
 
         public function view($page = 'home'){
+            $this->load->helper(array('form', 'url'));
+
             if(!file_exists(APPPATH.'views/pages/'.$page.'.php')){
                 show_404();
             }
@@ -25,6 +27,30 @@
             $this->load->view('templates/header');
             $this->load->view('pages/'.$page, $data);
             $this->load->view('templates/footer');      
+        }
+
+        public function search(){
+            $this->load->helper(array('form', 'url'));
+            $data['lists'] = $this->list_model->get_lists_search();
+
+            if(empty($data['lists'])){
+                $data['noResult'] = 'Geen taken...';
+            }
+
+            $this->load->helper('url');
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/home', $data);
+            $this->load->view('templates/footer');   
+        }
+
+        public function sort(){
+            $this->load->helper(array('form', 'url'));   
+            $data['lists'] = $this->list_model->get_lists_order();     
+
+            $this->load->view('templates/header');
+            $this->load->view('pages/home', $data);
+            $this->load->view('templates/footer');   
         }
 
         public function edit($id = NULL){

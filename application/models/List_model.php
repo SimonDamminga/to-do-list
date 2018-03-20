@@ -6,7 +6,9 @@
 
         public function get_lists(){
             $this->db->from('lists');
+            $this->db->order_by('Duration', 'asc');
             $this->db->join('tasks', 'lists.Id = tasks.listId', 'left outer');
+
 
             
 
@@ -22,6 +24,25 @@
             $query = $this->db->get();
             return $query->result_array();
         }
+
+        public function get_lists_search(){
+            $this->db->from('lists');
+            $this->db->where_in("Title", $this->input->post('search'));
+            $this->db->join('tasks', 'lists.Id = tasks.listId', 'left outer');
+
+            $query = $this->db->get();
+            return $query->result_array();         
+        }
+
+        public function get_lists_order(){
+            $this->db->from('lists');
+            $this->db->order_by($this->input->post('sort'), 'ASC');
+            $this->db->join('tasks', 'lists.Id = tasks.listId', 'left outer');
+
+            $query = $this->db->get();
+            return $query->result_array();     
+        }
+
 
         public function set_item(){
             $this->load->helper('url');

@@ -42,9 +42,39 @@ endforeach;
 
 if(empty($lists)){ ?>
     <h3><?= $noResult ?></h3>
-<?php }
+<?php } ?>
 
-foreach ($AllLists as $items): ?>
+<?php echo form_open('sort'); ?>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <select class="form-control" id="exampleSelect1" name="sort">
+                    <option value="Duration">Tijdsduur</option>
+                    <option value="Status">Status</option>
+                </select>
+            </div>        
+        </div>
+        <div class="col">
+            <input class="btn btn-primary inline" type="submit" name="submit" value="Sorteer" />
+        </div>
+    </div>
+</form>
+
+<?php echo form_open('search'); ?>
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+               <input type="text" class="form-control" placeholder="Zoek op lijst naam" name="search">
+            </div>        
+        </div>
+        <div class="col">
+            <input class="btn btn-primary inline" type="submit" name="submit" value="Zoeken" />
+        </div>
+    </div>
+</form>
+<br>     
+
+<?php foreach ($AllLists as $items): ?>
 
 
 <div class="list-group custom-list">
